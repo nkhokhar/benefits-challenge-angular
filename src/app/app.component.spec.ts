@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'benefits-challenge'`, () => {
+  it(`should have as title 'live-coding-frontend-angular'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('benefits-challenge');
+    expect(app.title).toEqual('live-coding-frontend-angular');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('benefits-challenge app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('live-coding-frontend-angular app is running!');
   });
 });

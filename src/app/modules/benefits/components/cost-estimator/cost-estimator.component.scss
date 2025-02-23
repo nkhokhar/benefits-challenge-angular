@@ -1,0 +1,21 @@
+.cost-estimator {
+  padding: 10px;
+  margin: 5px 0 10px 0;
+  display: flex;
+  flex-direction: row-reverse;
+
+  .total-cost {
+    background-color: #f0f0f0;
+    width: 200px;
+    height: 80px;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: bold;
+
+    .cost {
+      text-align: center;
+      font-size: 28px;
+      margin-top: 20px;
+    }
+  }
+}

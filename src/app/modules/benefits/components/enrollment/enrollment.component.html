@@ -1,0 +1,29 @@
+<div>
+  <ng-container *ngIf="steps[currentStep] === 'review'">
+    <review-info></review-info>
+  </ng-container>
+  <ng-container *ngIf="steps[currentStep] === 'election'">
+    <benefit-election [submitted]="submitted"></benefit-election>
+  </ng-container>
+  <div class="footer" *ngIf="!submitted">
+    <button
+      mat-raised-button
+      (click)="previousStep()"
+      [hidden]="currentStep === 0"
+    >
+      Previous
+    </button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="nextStep(currentStep === steps.length - 1)"
+    >
+      {{ currentStep === steps.length - 1 ? "Submit" : "Next" }}
+    </button>
+  </div>
+  <div class="footer" *ngIf="submitted">
+    <button mat-raised-button color="primary" (click)="startEnrollment()">
+      Start Over
+    </button>
+  </div>
+</div>

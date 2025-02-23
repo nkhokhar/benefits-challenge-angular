@@ -1,0 +1,31 @@
+<div class="content-container">
+  <h2>Review Info</h2>
+  <p>
+    <b>
+      Review your information below to check if any changes are needed before
+      you enroll.</b
+    >
+  </p>
+
+  <a class="link" (click)="openDependentModal()">+ Add New Dependent</a>
+
+  <div class="person-cards">
+    <card *ngFor="let person of personCards">
+      <div class="card-title">
+        <div>{{ person.name }}</div>
+        <div>
+          <i class="material-icons" (click)="editPerson(person)">visibility</i>
+          <i
+            (click)="deleteDependent(person)"
+            class="material-icons"
+            *ngIf="person.relationship !== 'Self'"
+            >delete</i
+          >
+        </div>
+      </div>
+      <span class="card-subtitle"
+        >{{ person.relationship }} ({{ person.gender }})</span
+      >
+    </card>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="content-container">
+  <h2>{{ submitted ? "Enrollment Complete" : "Select Benefits" }}</h2>
+
+  <section class="content-header">
+    <div style="text-align: left" *ngIf="!submitted">
+      <h4>Who do you want to be covered?</h4>
+      <div class="checkbox-group">
+        <mat-checkbox
+          *ngFor="let person of persons"
+          [disabled]="person.relationship === 'Self'"
+          [checked]="person.isSelected"
+          (change)="selectPerson($event, person)"
+        >
+          <div style="font-weight: bold">
+            {{ person.name }}
+          </div>
+          <div>
+            {{ person.relationship }}
+          </div>
+        </mat-checkbox>
+      </div>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>
+        You have successfully enrolled in benefits. Please see the benefit
+        elections below.
+      </h4>
+    </div>
+
+    <cost-estimator [totalCost]="deductionPerPaycheck"></cost-estimator>
+  </section>
+
+  <ng-container *ngIf="!submitted">
+    <div *ngFor="let benefit of availableCoverages" style="margin-bottom: 5px">
+      <card>
+        <div class="card-title">
+          <div>
+            {{ benefit.coverageType }}
+            <p style="font-size: 12px; font-weight: normal; margin-top: 3px">
+              Effective Date: {{ benefit.effectiveDate }}
+            </p>
+          </div>
+          <div style="font-size: 14px">{{ coverageLabel }}</div>
+        </div>
+        <div class="benefit-details">
+          <div>{{ benefit.plan }} Plan</div>
+        </div>
+      </card>
+    </div>
+  </ng-container>
+
+  <div class="person-cards" *ngIf="submitted">
+    <card *ngFor="let person of coveredIndividuals">
+      <div class="card-title">
+        <div>{{ person.name }}</div>
+      </div>
+      <span class="card-subtitle"
+        >{{ person.relationship }} ({{ person.gender }})</span
+      >
+      <div style="margin-top: 25px">
+        <b>Covered For:</b>
+        <ul *ngIf="person.isSelected">
+          <li>Medical</li>
+          <li>Dental</li>
+          <li>Vision</li>
+        </ul>
+        <div *ngIf="!person.isSelected">Not Enrolled</div>
+      </div>
+    </card>
+  </div>
+</div>
